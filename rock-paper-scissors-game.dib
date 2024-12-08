@@ -1,0 +1,200 @@
+#!meta
+
+{"kernelInfo":{"defaultKernelName":"csharp","items":[{"aliases":["c#","cs"],"languageName":"C#","name":"csharp"},{"aliases":["f#","fs"],"languageName":"F#","name":"fsharp"},{"aliases":[],"languageName":"HTML","name":"html"},{"aliases":[],"languageName":"HTTP","name":"http"},{"aliases":["js"],"languageName":"JavaScript","name":"javascript"},{"aliases":[],"languageName":"KQL","name":"kql"},{"aliases":[],"languageName":"Mermaid","name":"mermaid"},{"aliases":["powershell"],"languageName":"PowerShell","name":"pwsh"},{"aliases":[],"languageName":"SQL","name":"sql"},{"aliases":[],"name":"value"}]}}
+
+#!html
+
+#A Game Of ROCK-PAPER-SISSORS
+
+#!html
+
+%%html
+
+<!DOCTYPE html>
+<html></html>
+<head>
+    <style>
+    body
+
+{
+    font-family: Arial, sans-serif;
+    font-weight: bold;
+    margin: 0px;
+    display: flex;
+    flex-direction: column;
+    align-Items: center; 
+}
+
+h1
+
+{
+    font-size: 2.5rem;
+    color: hsl(0%, 0%, 20%);
+}
+
+.choices
+
+{
+    margin-bottom: 30% ;
+
+}
+
+
+.choices button
+
+{
+
+    font-size: 5rem; 
+    min-width: 160px;
+    margin: 0 10px;
+    border-radius: 250px;
+    background-color: rgb(10, 68, 93);
+    color: white;
+    cursor: pointer;
+    transition: background-color .05s ease;
+}
+
+
+.choices button-hover
+{
+
+
+    background-color:rgb(5, 60, 85); 
+
+}
+
+
+
+#playerDisplay, #computerDisplay
+{
+
+    font-size: 5rem;
+    margin: 30px 0;
+
+}
+
+
+
+#resultDisplay
+{
+    font-size: 2.5rem;
+    margin: 30px 0;
+
+}
+ .scoreDisplay 
+ {
+     font-size: 2.5rem;
+    
+ }
+
+.greenText, #playerScoreDisplay
+
+{
+    
+    color: green;
+    
+}
+
+.redText, #computerScoreDisplay
+{
+
+    color: red;
+    
+}
+    </style>
+</head>
+<body>
+<h1>ROCK-PAPER-SISSORS</h1>
+<div class = "choices">
+<button onclick = "playGame('rock')">👊</button>
+<button onclick = "playGame('paper')">✋</button>
+<button onclick = "playGame('scissors')">✌</button>
+</div>
+<div id = "playerDisplay"> Player : </div>
+<div id = "computerDisplay"> Computer : </div>
+<div id = "resultDisplay"> Result : </div>
+<div class = "scoreDisplay">Player Score:
+<span id = "playerScoreDisplay">0</span>
+</div>
+<div class = "scoreDisplay">Computer Score:
+    <span id = "computerScoreDisplay">0</span>
+</div>
+    <script>
+const choices = ["rock", "paper" ,  "scissors"];
+
+const playerDisplay = document.getElementById("playerDisplay");
+const computerDisplay= document.getElementById("computerDisplay");
+const resultDisplay = document.getElementById("resultDisplay");
+const playerScoreDisplay = document.getElementById("playerScoreDisplay");
+const computerScoreDisplay = document.getElementById("computerScoreDisplay");
+let playerScore = 0;
+let computerScore = 0;
+
+function playGame(playerChoice) {
+ 
+    const computerChoice = choices[Math.floor(Math.random() * 3)];
+    let result = " ";
+    if(playerChoice === computerChoice) 
+        
+        
+        { 
+        
+             result = "IT'S A TIE";
+
+        }
+
+
+    else{
+
+        switch(playerChoice) {
+
+            case "rock" :
+            result =    (computerChoice === "scissors") ? "YOU WIN!" : "YOU LOSE!";
+            break; 
+          
+            
+            case "paper" :
+            result =    (computerChoice ===- "rock") ? "YOU WIN!": "YOU LOSE!"
+            break;
+           
+        
+            case "scissors" :
+            result = (computerChoice === "paper") ? "YOU WIN!" :  "YOU LOSE!" 
+            break;
+        }
+      
+    
+    }    
+    
+     
+playerDisplay.textContent =  " Player : " + playerChoice;
+computerDisplay.textContent = " Computer : " + computerChoice;
+resultDisplay.textContent =  result; 
+
+resultDisplay.classList.remove("greenText", "redText");
+
+switch(result) {
+
+    case "YOU WIN!":
+    resultDisplay.classList.add("greenText");
+    playerScore++;
+    playerScoreDisplay.textContent = playerScore;
+    console.log("player");
+    break;
+
+
+    case "YOU LOSE!":
+    resultDisplay.classList.add("redText"); 
+    computerScore++; 
+    computerScoreDisplay.textContent = computerScore;
+    console.log("computer");
+    break; 
+
+        }
+}
+
+</script>
+</body>
+</html>
+
+    
